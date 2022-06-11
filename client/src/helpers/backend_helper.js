@@ -19,6 +19,12 @@ export const getProductById = id => get(url.GET_PRODUCT, { params: { id } })
 export const addProduct = product => post(url.ADD_PRODUCT, product)
 export const updateProduct = product =>  put(url.UPDATE_PRODUCT, product)
 
+//  .............................. PACKAGES ....................................
+export const searchPackages = item => post(url.SEARCH_PACKAGES, item);
+export const getPackageById = id => get(url.GET_PACKAGE, { params: { id } });
+export const addPackage = item => post(url.ADD_PACKAGE, item);
+export const updatePackage = item =>  put(url.UPDATE_PACKAGE, item);
+
 //  .............................. BLOGS ....................................
 export const searchBlogs = blog => post(url.SEARCH_BLOGS, blog)
 export const getBlogById = id => get(url.GET_BLOG, { params: { id } })

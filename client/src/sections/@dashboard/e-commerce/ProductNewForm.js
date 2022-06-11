@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 // form
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // @mui
 import { styled } from '@mui/material/styles';
@@ -16,39 +16,16 @@ import { PATH_DASHBOARD } from '../../../routes/paths';
 import {
   FormProvider,
   RHFSwitch,
-  RHFSelect,
   RHFEditor,
   RHFTextField,
-  RHFRadioGroup,
-  RHFUploadMultiFile,
 } from '../../../components/hook-form';
-import {addProduct, addUser, updateProduct, updateUser} from "../../../helpers/backend_helper";
+import {
+  addPackage,
+  updatePackage,
+} from "../../../helpers/backend_helper";
 
 // ----------------------------------------------------------------------
 
-const GENDER_OPTION = ['Men', 'Women', 'Kids'];
-
-const CATEGORY_OPTION = [
-  { group: 'Clothing', classify: ['Shirts', 'T-shirts', 'Jeans', 'Leather'] },
-  { group: 'Tailored', classify: ['Suits', 'Blazers', 'Trousers', 'Waistcoats'] },
-  { group: 'Accessories', classify: ['Shoes', 'Backpacks and bags', 'Bracelets', 'Face masks'] },
-];
-
-const TAGS_OPTION = [
-  'Toy Story 3',
-  'Logan',
-  'Full Metal Jacket',
-  'Dangal',
-  'The Sting',
-  '2001: A Space Odyssey',
-  "Singin' in the Rain",
-  'Toy Story',
-  'Bicycle Thieves',
-  'The Kid',
-  'Inglourious Basterds',
-  'Snatch',
-  '3 Idiots',
-];
 
 const LabelStyle = styled(Typography)(({ theme }) => ({
   ...theme.typography.subtitle2,
@@ -69,26 +46,22 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const NewProductSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
+    title: Yup.string().required('Name is required'),
     description: Yup.string().required('Description is required'),
-    images: Yup.array().min(1, 'Images is required'),
-    price: Yup.number().moreThan(0, 'Price should not be $0.00'),
+    // images: Yup.array().min(1, 'Images is required'),
+    startingPrice: Yup.number().moreThan(0, 'Price should not be $0.00'),
   });
 
   const defaultValues = useMemo(
     () => ({
-      name: currentProduct?.name || '',
+      title: currentProduct?.title || '',
+      duration: currentProduct?.duration || '',
       description: currentProduct?.description || '',
-      images: currentProduct?.images || [],
-      code: currentProduct?.code || '',
-      sku: currentProduct?.sku || '',
-      price: currentProduct?.price || 0,
-      priceSale: currentProduct?.priceSale || 0,
-      tags: currentProduct?.tags || [TAGS_OPTION[0]],
-      inStock: true,
-      taxes: true,
-      gender: currentProduct?.gender || GENDER_OPTION[2],
-      category: currentProduct?.category || CATEGORY_OPTION[0].classify[1],
+      cityName: currentProduct?.cityName || '',
+      startingPrice: currentProduct?.startingPrice || 0,
+      // plans: currentProduct?.tags || [TAGS_OPTION[0]],
+      isMostPopular: true,
+      isActive: true,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentProduct]
@@ -124,15 +97,14 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
   const onSubmit = async () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
-      console.log(isEdit,"submit ---", getValues())
-      const product = {...currentProduct, ...getValues()}
+      console.log(isEdit,"submit ---", getValues());
+      const product = {...currentProduct, ...getValues()};
       if(isEdit){
-        await updateProduct(product);
+        await updatePackage(product);
       }else{
         delete product._id;
-        await addProduct({
+        await addPackage({
           ...product,
-          images:["https://minimal-assets-api.vercel.app/assets/images/products/product_1.jpg"],
         });
       }
       reset();
@@ -143,28 +115,7 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
     }
   };
 
-  const handleDrop = useCallback(
-    (acceptedFiles) => {
-      setValue(
-        'images',
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-    },
-    [setValue]
-  );
 
-  const handleRemoveAll = () => {
-    setValue('images', []);
-  };
-
-  const handleRemove = (file) => {
-    const filteredItems = values.images?.filter((_file) => _file !== file);
-    setValue('images', filteredItems);
-  };
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -172,24 +123,24 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
         <Grid item xs={12} md={8}>
           <Card sx={{ p: 3 }}>
             <Stack spacing={3}>
-              <RHFTextField name="name" label="Product Name" />
+              <RHFTextField name="name" label="Package Name" />
               <div>
                 <LabelStyle>Description</LabelStyle>
                 <RHFEditor simple name="description" />
               </div>
 
-              <div>
-                <LabelStyle>Images</LabelStyle>
-                <RHFUploadMultiFile
-                  name="images"
-                  showPreview
-                  accept="image/*"
-                  maxSize={3145728}
-                  onDrop={handleDrop}
-                  onRemove={handleRemove}
-                  onRemoveAll={handleRemoveAll}
-                />
-              </div>
+              {/* <div> */}
+              {/*  <LabelStyle>Images</LabelStyle> */}
+              {/*  <RHFUploadMultiFile */}
+              {/*    name="images" */}
+              {/*    showPreview */}
+              {/*    accept="image/*" */}
+              {/*    maxSize={3145728} */}
+              {/*    onDrop={handleDrop} */}
+              {/*    onRemove={handleRemove} */}
+              {/*    onRemoveAll={handleRemoveAll} */}
+              {/*  /> */}
+              {/* </div> */}
             </Stack>
           </Card>
         </Grid>
@@ -197,65 +148,67 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
         <Grid item xs={12} md={4}>
           <Stack spacing={3}>
             <Card sx={{ p: 3 }}>
-              <RHFSwitch name="inStock" label="In stock" />
+              <RHFSwitch name="isActive" label="isActive" />
+              <RHFSwitch name="isMostPopular" label="isMostPopular" />
 
-              <Stack spacing={3} mt={2}>
-                <RHFTextField name="code" label="Product Code" />
-                <RHFTextField name="sku" label="Product SKU" />
+               <Stack spacing={3} mt={2}>
+                 <RHFTextField name="cityName" label="City Name" />
+                 {/* <RHFTextField name="sku" label="Product SKU" /> */}
 
-                <div>
-                  <LabelStyle>Gender</LabelStyle>
-                  <RHFRadioGroup
-                    name="gender"
-                    options={GENDER_OPTION}
-                    sx={{
-                      '& .MuiFormControlLabel-root': { mr: 4 },
-                    }}
-                  />
-                </div>
+                 {/* <div> */}
+                 {/* <LabelStyle>Gender</LabelStyle> */}
+                 {/* <RHFRadioGroup */}
+                 {/*   name="gender" */}
+                 {/*   options={GENDER_OPTION} */}
+                 {/*   sx={{ */}
+                 {/*     '& .MuiFormControlLabel-root': { mr: 4 }, */}
+                 {/*   }} */}
+                 {/* /> */}
+                 {/* </div> */}
 
-                <RHFSelect name="category" label="Category">
-                  {CATEGORY_OPTION.map((category) => (
-                    <optgroup key={category.group} label={category.group}>
-                      {category.classify.map((classify) => (
-                        <option key={classify} value={classify}>
-                          {classify}
-                        </option>
-                      ))}
-                    </optgroup>
-                  ))}
-                </RHFSelect>
 
-                <Controller
-                  name="tags"
-                  control={control}
-                  render={({ field }) => (
-                    <Autocomplete
-                      {...field}
-                      multiple
-                      freeSolo
-                      onChange={(event, newValue) => field.onChange(newValue)}
-                      options={TAGS_OPTION.map((option) => option)}
-                      renderTags={(value, getTagProps) =>
-                        value.map((option, index) => (
-                          <Chip {...getTagProps({ index })} key={option} size="small" label={option} />
-                        ))
-                      }
-                      renderInput={(params) => <TextField label="Tags" {...params} />}
-                    />
-                  )}
-                />
-              </Stack>
+                 {/* <RHFSelect name="category" label="Category"> */}
+                 {/* {CATEGORY_OPTION.map((category) => ( */}
+                 {/*   <optgroup key={category.group} label={category.group}> */}
+                 {/*     {category.classify.map((classify) => ( */}
+                 {/*       <option key={classify} value={classify}> */}
+                 {/*         {classify} */}
+                 {/*       </option> */}
+                 {/*     ))} */}
+                 {/*   </optgroup> */}
+                 {/* ))} */}
+                 {/* </RHFSelect> */}
+
+                {/* <Controller */}
+                {/*  name="tags" */}
+                {/*  control={control} */}
+                {/*  render={({ field }) => ( */}
+                {/*    <Autocomplete */}
+                {/*      {...field} */}
+                {/*      multiple */}
+                {/*      freeSolo */}
+                {/*      onChange={(event, newValue) => field.onChange(newValue)} */}
+                {/*      options={TAGS_OPTION.map((option) => option)} */}
+                {/*      renderTags={(value, getTagProps) => */}
+                {/*        value.map((option, index) => ( */}
+                {/*          <Chip {...getTagProps({ index })} key={option} size="small" label={option} /> */}
+                {/*        )) */}
+                {/*      } */}
+                {/*      renderInput={(params) => <TextField label="Tags" {...params} />} */}
+                {/*    /> */}
+                {/*  )} */}
+                {/* /> */}
+               </Stack>
             </Card>
 
             <Card sx={{ p: 3 }}>
               <Stack spacing={3} mb={2}>
                 <RHFTextField
-                  name="price"
-                  label="Regular Price"
+                  name="startingPrice"
+                  label="Starting Price"
                   placeholder="0.00"
-                  value={getValues('price') === 0 ? '' : getValues('price')}
-                  onChange={(event) => setValue('price', Number(event.target.value))}
+                  value={getValues('startingPrice') === 0 ? '' : getValues('startingPrice')}
+                  onChange={(event) => setValue('startingPrice', Number(event.target.value))}
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
                     startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -263,21 +216,21 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
                   }}
                 />
 
-                <RHFTextField
-                  name="priceSale"
-                  label="Sale Price"
-                  placeholder="0.00"
-                  value={getValues('priceSale') === 0 ? '' : getValues('priceSale')}
-                  onChange={(event) => setValue('priceSale', Number(event.target.value))}
-                  InputLabelProps={{ shrink: true }}
-                  InputProps={{
-                    startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                    type: 'number',
-                  }}
-                />
+                {/* <RHFTextField */}
+                {/*  name="priceSale" */}
+                {/*  label="Sale Price" */}
+                {/*  placeholder="0.00" */}
+                {/*  value={getValues('priceSale') === 0 ? '' : getValues('priceSale')} */}
+                {/*  onChange={(event) => setValue('priceSale', Number(event.target.value))} */}
+                {/*  InputLabelProps={{ shrink: true }} */}
+                {/*  InputProps={{ */}
+                {/*    startAdornment: <InputAdornment position="start">$</InputAdornment>, */}
+                {/*    type: 'number', */}
+                {/*  }} */}
+                {/* /> */}
               </Stack>
 
-              <RHFSwitch name="taxes" label="Price includes taxes" />
+              {/* <RHFSwitch name="taxes" label="Price includes taxes" /> */}
             </Card>
 
             <LoadingButton type="submit" variant="contained" size="large" loading={isSubmitting}>

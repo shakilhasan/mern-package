@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import sum from 'lodash/sum';
 import uniqBy from 'lodash/uniqBy';
-import { getProductById, searchProducts} from "../../helpers/backend_helper";
+import {getPackageById, getProductById, searchPackages, searchProducts} from "../../helpers/backend_helper";
 //
 import { dispatch } from '../store';
 
@@ -214,7 +214,7 @@ export function getProducts(product) {
     dispatch(slice.actions.startLoading());
     try {
       // const response = await axios.get('/api/products');
-      const response = await searchProducts(product);
+      const response = await searchPackages(product);
       dispatch(slice.actions.getProductsSuccess(response.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error));
@@ -232,7 +232,7 @@ export function getProduct(id) {
       //   params: { name },
       // });
 
-      const response = await getProductById(id);
+      const response = await getPackageById(id);
       dispatch(slice.actions.getProductSuccess(response));
     } catch (error) {
       console.error(error);

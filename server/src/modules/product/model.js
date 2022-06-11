@@ -9,7 +9,6 @@ const schema = new mongoose.Schema(
     code: { type: String, unique: true, required: true },
     sku: { type: String, required: false }, // todo: required: true
     tags: [{ type: String, required: false }],
-    price: { type: Number, required: true },
     priceSale: { type: Number, required: true },
 
     totalRating: { type: Number, required: false },
@@ -37,7 +36,6 @@ const schema = new mongoose.Schema(
     inventoryType: { type: String, required: false },
     sizes: [{ type: String, required: false }],
     available: { type: Number, required: false },
-    description: { type: String, required: false }, // todo: required: true
     sold: { type: Number, required: false },
     createdAt: { type: String, required: false },
     category: { type: String, required: false },

@@ -24,6 +24,12 @@ export const SEARCH_PRODUCTS = "/products/search"
 export const ADD_PRODUCT = "/products/create"
 export const UPDATE_PRODUCT = "/products/update"
 
+// PACKAGES
+export const GET_PACKAGE = "/packages/detail";
+export const SEARCH_PACKAGES = "/packages/search";
+export const ADD_PACKAGE = "/packages/create";
+export const UPDATE_PACKAGE = "/packages/update";
+
 // BLOGS
 export const GET_BLOG = "/blogs/detail"
 export const SEARCH_BLOGS = "/blogs/search"

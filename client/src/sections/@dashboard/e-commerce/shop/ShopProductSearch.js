@@ -15,7 +15,7 @@ import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // utils
-import {searchProducts} from "../../../../helpers/backend_helper";
+import {searchPackages, searchProducts} from "../../../../helpers/backend_helper";
 
 
 // ----------------------------------------------------------------------
@@ -39,7 +39,7 @@ export default function ShopProductSearch() {
     try {
       setSearchQuery(value);
       if (value) {
-        const response = await searchProducts({name:value,pageSize:20});
+        const response = await searchPackages({name:value,pageSize:20});
         if (isMountedRef.current) {
           setSearchResults(response.data);
         }
