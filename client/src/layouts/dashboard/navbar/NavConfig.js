@@ -39,33 +39,33 @@ const navConfig = [
 
   // CATEGORY
   // ----------------------------------------------------------------------
-  {
-    subheader: 'category',
-    items: [
-      // CATEGORY : Fruits
-      {
-        title: 'Fruits & Vegetables',
-        path: PATH_DASHBOARD.user.root,
-        icon: ICONS.ecommerce,
-        children: [
-          { title: 'Dates (Khejur)', path: PATH_DASHBOARD.shop.datesKhejur },
-          { title: 'Fresh Fruits', path: PATH_DASHBOARD.shop.freshFruit },
-        ],
-      },
-
-      // CATEGORY : Meat
-      {
-        title: 'Meat & Fish',
-        path: PATH_DASHBOARD.eCommerce.root,
-        icon: ICONS.cart,
-        children: [
-          { title: 'Meat', path: PATH_DASHBOARD.shop.meat },
-          { title: 'Frozen Fish', path: PATH_DASHBOARD.shop.frozenFish },
-        ],
-      },
-
-    ],
-  },
+  // {
+  //   subheader: 'category',
+  //   items: [
+  //     // CATEGORY : Fruits
+  //     {
+  //       title: 'Fruits & Vegetables',
+  //       path: PATH_DASHBOARD.user.root,
+  //       icon: ICONS.ecommerce,
+  //       children: [
+  //         { title: 'Dates (Khejur)', path: PATH_DASHBOARD.shop.datesKhejur },
+  //         { title: 'Fresh Fruits', path: PATH_DASHBOARD.shop.freshFruit },
+  //       ],
+  //     },
+  //
+  //     // CATEGORY : Meat
+  //     {
+  //       title: 'Meat & Fish',
+  //       path: PATH_DASHBOARD.eCommerce.root,
+  //       icon: ICONS.cart,
+  //       children: [
+  //         { title: 'Meat', path: PATH_DASHBOARD.shop.meat },
+  //         { title: 'Frozen Fish', path: PATH_DASHBOARD.shop.frozenFish },
+  //       ],
+  //     },
+  //
+  //   ],
+  // },
 
   // MANAGEMENT
   // ----------------------------------------------------------------------
@@ -89,31 +89,31 @@ const navConfig = [
 
       // MANAGEMENT : E-COMMERCE
       {
-        title: 'e-commerce',
+        title: 'packages',
         path: PATH_DASHBOARD.eCommerce.root,
         icon: ICONS.cart,
         children: [
-          { title: 'shop', path: PATH_DASHBOARD.eCommerce.shop },
-          { title: 'product', path: PATH_DASHBOARD.eCommerce.productById },
-          { title: 'list', path: PATH_DASHBOARD.eCommerce.list },
+          { title: 'list', path: PATH_DASHBOARD.eCommerce.shop },
+          // { title: 'product', path: PATH_DASHBOARD.eCommerce.productById },
+          // { title: 'list', path: PATH_DASHBOARD.eCommerce.list },
           { title: 'create', path: PATH_DASHBOARD.eCommerce.newProduct },
-          { title: 'edit', path: PATH_DASHBOARD.eCommerce.editById },
-          { title: 'checkout', path: PATH_DASHBOARD.eCommerce.checkout },
-          { title: 'invoice', path: PATH_DASHBOARD.eCommerce.invoice },
+          // { title: 'edit', path: PATH_DASHBOARD.eCommerce.editById },
+          // { title: 'checkout', path: PATH_DASHBOARD.eCommerce.checkout },
+          // { title: 'invoice', path: PATH_DASHBOARD.eCommerce.invoice },
         ],
       },
 
       // MANAGEMENT : BLOG
-      {
-        title: 'blog',
-        path: PATH_DASHBOARD.blog.root,
-        icon: ICONS.blog,
-        children: [
-          { title: 'posts', path: PATH_DASHBOARD.blog.posts },
-          { title: 'post', path: PATH_DASHBOARD.blog.postById },
-          { title: 'new post', path: PATH_DASHBOARD.blog.newPost },
-        ],
-      },
+      // {
+      //   title: 'blog',
+      //   path: PATH_DASHBOARD.blog.root,
+      //   icon: ICONS.blog,
+      //   children: [
+      //     { title: 'posts', path: PATH_DASHBOARD.blog.posts },
+      //     { title: 'post', path: PATH_DASHBOARD.blog.postById },
+      //     { title: 'new post', path: PATH_DASHBOARD.blog.newPost },
+      //   ],
+      // },
     ],
   },
 
