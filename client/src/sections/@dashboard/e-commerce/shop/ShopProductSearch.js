@@ -15,7 +15,7 @@ import useIsMountedRef from '../../../../hooks/useIsMountedRef';
 // routes
 import { PATH_DASHBOARD } from '../../../../routes/paths';
 // utils
-import {searchPackages, searchProducts} from "../../../../helpers/backend_helper";
+import {searchPackages} from "../../../../helpers/backend_helper";
 
 
 // ----------------------------------------------------------------------
@@ -39,7 +39,7 @@ export default function ShopProductSearch() {
     try {
       setSearchQuery(value);
       if (value) {
-        const response = await searchPackages({name:value,pageSize:20});
+        const response = await searchPackages({title:value, current:1, pageSize:20});
         if (isMountedRef.current) {
           setSearchResults(response.data);
         }
@@ -50,7 +50,7 @@ export default function ShopProductSearch() {
   };
 
   const handleClick = (id) => {
-    // navigate(`${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(name)}`);
+    // navigate(`${PATH_DASHBOARD.eCommerce.root}/product/${paramCase(title)}`);
     navigate(`${PATH_DASHBOARD.eCommerce.root}/product/${id}`);
 
   };
@@ -69,7 +69,7 @@ export default function ShopProductSearch() {
       PopperComponent={PopperStyle}
       options={searchResults}
       onInputChange={(event, value) => handleChangeSearch(value)}
-      getOptionLabel={(product) => product.name}
+      getOptionLabel={(product) => product.title}
       noOptionsText={<SearchNotFound searchQuery={searchQuery} />}
       isOptionEqualToValue={(option, value) => option.id === value.id}
       renderInput={(params) => (
@@ -89,9 +89,9 @@ export default function ShopProductSearch() {
         />
       )}
       renderOption={(props, product, { inputValue }) => {
-        const { _id, name, cover } = product;
-        const matches = match(name, inputValue);
-        const parts = parse(name, matches);
+        const { _id, title, cover } = product;
+        const matches = match(title, inputValue);
+        const parts = parse(title, matches);
 
         return (
           <li {...props}>
