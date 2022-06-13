@@ -55,7 +55,7 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
   const defaultValues = useMemo(
     () => ({
       title: currentProduct?.title || '',
-      duration: currentProduct?.duration || '',
+      // duration: currentProduct?.duration || '',
       description: currentProduct?.description || '',
       cityName: currentProduct?.cityName || '',
       startingPrice: currentProduct?.startingPrice || 0,
@@ -95,8 +95,11 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
   }, [isEdit, currentProduct]);
 
   const onSubmit = async () => {
+    console.log("submit ---");
+
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
+      console.log("submit ---");
       console.log(isEdit,"submit ---", getValues());
       const product = {...currentProduct, ...getValues()};
       if(isEdit){
@@ -125,7 +128,7 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
             <Stack spacing={3}>
               <RHFTextField name="name" label="Package Name" />
               <div>
-                <LabelStyle>Description</LabelStyle>
+                <LabelStyle> Description </LabelStyle>
                 <RHFEditor simple name="description" />
               </div>
 
@@ -203,18 +206,21 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
 
             <Card sx={{ p: 3 }}>
               <Stack spacing={3} mb={2}>
-                <RHFTextField
+                 <RHFTextField
                   name="startingPrice"
                   label="Starting Price"
                   placeholder="0.00"
                   value={getValues('startingPrice') === 0 ? '' : getValues('startingPrice')}
-                  onChange={(event) => setValue('startingPrice', Number(event.target.value))}
+                  onChange={(event) => {
+                    console.log(getValues('startingPrice'),'event.target.value--', Number(event.target.value));
+                    setValue('startingPrice', Number(event.target.value))}
+                 }
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
                     startAdornment: <InputAdornment position="start">$</InputAdornment>,
                     type: 'number',
                   }}
-                />
+                 />
 
                 {/* <RHFTextField */}
                 {/*  name="priceSale" */}
