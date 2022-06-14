@@ -2,12 +2,12 @@
 
 In this repository I will keep adding the best practices we should follow in a MERN project. Also for better UX I am using MUI for the UI.
 
-[//]: # (Below are the sample of a product-shop and list page:)
+Below are the  package create [page](http://localhost:3030/dashboard/e-commerce/product/new):
 
-[//]: # ()
-[//]: # (![Product List Page]&#40;docs/images/product-shop.png&#41;)
 
-[//]: # ()
+![Product List Page](docs/images/CreatePackage.png)
+
+
 [//]: # (![Product List Page]&#40;docs/images/product-list-search.png&#41;)
 
 ## Technology stack
