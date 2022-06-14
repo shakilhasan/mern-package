@@ -97,31 +97,31 @@ export default function ShopFilterSidebar({ isOpen, onResetAll, onOpen, onClose 
 
         <Scrollbar>
           <Stack spacing={3} sx={{ p: 3 }}>
-            {/*<Stack spacing={1}>*/}
-            {/*  <Typography variant="subtitle1">Gender</Typography>*/}
-            {/*  <RHFMultiCheckbox name="gender" options={FILTER_GENDER_OPTIONS} sx={{ width: 1 }} />*/}
-            {/*</Stack>*/}
+            <Stack spacing={1}>
+              <Typography variant="subtitle1">Gender</Typography>
+              <RHFMultiCheckbox name="gender" options={FILTER_GENDER_OPTIONS} sx={{ width: 1 }} />
+            </Stack>
 
-            {/*<Stack spacing={1}>*/}
-            {/*  <Typography variant="subtitle1">Category</Typography>*/}
-            {/*  <RHFRadioGroup name="category" options={FILTER_CATEGORY_OPTIONS} row={false} />*/}
-            {/*</Stack>*/}
+            <Stack spacing={1}>
+              <Typography variant="subtitle1">Category</Typography>
+              <RHFRadioGroup name="category" options={FILTER_CATEGORY_OPTIONS} row={false} />
+            </Stack>
 
-            {/*<Stack spacing={1}>*/}
-            {/*  <Typography variant="subtitle1">Colour</Typography>*/}
+            <Stack spacing={1}>
+              <Typography variant="subtitle1">Colour</Typography>
 
-            {/*  <Controller*/}
-            {/*    name="colors"*/}
-            {/*    control={control}*/}
-            {/*    render={({ field }) => (*/}
-            {/*      <ColorManyPicker*/}
-            {/*        colors={FILTER_COLOR_OPTIONS}*/}
-            {/*        onChangeColor={(color) => field.onChange(onSelected(field.value, color))}*/}
-            {/*        sx={{ maxWidth: 36 * 4 }}*/}
-            {/*      />*/}
-            {/*    )}*/}
-            {/*  />*/}
-            {/*</Stack>*/}
+              <Controller
+                name="colors"
+                control={control}
+                render={({ field }) => (
+                  <ColorManyPicker
+                    colors={FILTER_COLOR_OPTIONS}
+                    onChangeColor={(color) => field.onChange(onSelected(field.value, color))}
+                    sx={{ maxWidth: 36 * 4 }}
+                  />
+                )}
+              />
+            </Stack>
 
             <Stack spacing={1}>
               <Typography variant="subtitle1">Price</Typography>
@@ -132,44 +132,44 @@ export default function ShopFilterSidebar({ isOpen, onResetAll, onOpen, onClose 
               />
             </Stack>
 
-            {/*<Stack spacing={1}>*/}
-            {/*  <Typography variant="subtitle1">Rating</Typography>*/}
+            <Stack spacing={1}>
+              <Typography variant="subtitle1">Rating</Typography>
 
-            {/*  <Controller*/}
-            {/*    name="rating"*/}
-            {/*    control={control}*/}
-            {/*    render={({ field }) => (*/}
-            {/*      <RadioGroup {...field}>*/}
-            {/*        {FILTER_RATING_OPTIONS.map((item, index) => (*/}
-            {/*          <FormControlLabel*/}
-            {/*            key={item}*/}
-            {/*            value={item}*/}
-            {/*            control={*/}
-            {/*              <Radio*/}
-            {/*                disableRipple*/}
-            {/*                color="default"*/}
-            {/*                icon={<Rating readOnly value={4 - index} />}*/}
-            {/*                checkedIcon={<Rating readOnly value={4 - index} />}*/}
-            {/*                sx={{*/}
-            {/*                  '&:hover': { bgcolor: 'transparent' },*/}
-            {/*                }}*/}
-            {/*              />*/}
-            {/*            }*/}
-            {/*            label="& Up"*/}
-            {/*            sx={{*/}
-            {/*              my: 0.5,*/}
-            {/*              borderRadius: 1,*/}
-            {/*              '&:hover': { opacity: 0.48 },*/}
-            {/*              ...(field.value.includes(item) && {*/}
-            {/*                bgcolor: 'action.selected',*/}
-            {/*              }),*/}
-            {/*            }}*/}
-            {/*          />*/}
-            {/*        ))}*/}
-            {/*      </RadioGroup>*/}
-            {/*    )}*/}
-            {/*  />*/}
-            {/*</Stack>*/}
+              <Controller
+                name="rating"
+                control={control}
+                render={({ field }) => (
+                  <RadioGroup {...field}>
+                    {FILTER_RATING_OPTIONS.map((item, index) => (
+                      <FormControlLabel
+                        key={item}
+                        value={item}
+                        control={
+                          <Radio
+                            disableRipple
+                            color="default"
+                            icon={<Rating readOnly value={4 - index} />}
+                            checkedIcon={<Rating readOnly value={4 - index} />}
+                            sx={{
+                              '&:hover': { bgcolor: 'transparent' },
+                            }}
+                          />
+                        }
+                        label="& Up"
+                        sx={{
+                          my: 0.5,
+                          borderRadius: 1,
+                          '&:hover': { opacity: 0.48 },
+                          ...(field.value.includes(item) && {
+                            bgcolor: 'action.selected',
+                          }),
+                        }}
+                      />
+                    ))}
+                  </RadioGroup>
+                )}
+              />
+            </Stack>
           </Stack>
         </Scrollbar>
 
