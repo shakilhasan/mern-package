@@ -20,14 +20,21 @@ const schema = new mongoose.Schema(
 
 // indices
 // text index for name
-schema.index({ title: "text" });
+// schema.index({ title: "text" });
+
+schema.ensureIndex({
+    name: "text",
+    description : "text",
+    duration : "text",
+    cityName : "text",
+});
 
 schema.index({ createdAt: 1 });
 schema.index({ updatedAt: 1 });
 schema.index({ startingPrice: 1 });
-schema.index({ description: 1 });
-schema.index({ duration: 1 });
-schema.index({ cityName: 1 });
+// schema.index({ description: 1 });
+// schema.index({ duration: 1 });
+// schema.index({ cityName: 1 });
 
 // reference model
 const Package = mongoose.model("Package", schema);

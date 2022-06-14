@@ -201,12 +201,12 @@ function applyFilter(products, sortBy, filters) {
   if (filters.priceRange) {
     products = products.filter((product) => {
       if (filters.priceRange === 'below') {
-        return product.price < 25;
+        return product.startingPrice < 25;
       }
       if (filters.priceRange === 'between') {
-        return product.price >= 25 && product.price <= 75;
+        return product.startingPrice >= 25 && product.startingPrice <= 75;
       }
-      return product.price > 75;
+      return product.startingPrice > 75;
     });
   }
   if (filters.rating) {
