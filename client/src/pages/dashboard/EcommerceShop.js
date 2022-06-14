@@ -106,17 +106,17 @@ export default function EcommerceShop(props) {
   };
 
   return (
-    <Page title="Ecommerce: Shop">
+    <Page title="Ecommerce: Package">
       <Container maxWidth={themeStretch ? false : 'lg'}>
         <HeaderBreadcrumbs
-          heading="Shop"
+          heading="Package"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
             {
               name: 'E-Commerce',
               href: PATH_DASHBOARD.eCommerce.root,
             },
-            { name: 'Shop' },
+            { name: 'Package' },
           ]}
         />
 

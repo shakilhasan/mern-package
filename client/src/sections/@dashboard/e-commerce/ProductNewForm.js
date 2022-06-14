@@ -276,6 +276,91 @@ export default function ProductNewForm({ isEdit, currentProduct }) {
                         type: 'number',
                       }}
                   />
+                  <RHFTextField
+                      name="singlePerPax"
+                      label="singlePerPax"
+                      placeholder="0.00"
+                      value={getValues('singlePerPax') === 0 ? '' : getValues('singlePerPax')}
+                      onChange={(event) => setValue('singlePerPax', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  <RHFTextField
+                      name="doublePerPax"
+                      label="doublePerPax"
+                      placeholder="0.00"
+                      value={getValues('doublePerPax') === 0 ? '' : getValues('doublePerPax')}
+                      onChange={(event) => setValue('doublePerPax', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  <RHFTextField
+                      name="twinPerPax"
+                      label="twinPerPax"
+                      placeholder="0.00"
+                      value={getValues('twinPerPax') === 0 ? '' : getValues('twinPerPax')}
+                      onChange={(event) => setValue('twinPerPax', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  <RHFTextField
+                      name="triplePerPax"
+                      label="triplePerPax"
+                      placeholder="0.00"
+                      value={getValues('triplePerPax') === 0 ? '' : getValues('triplePerPax')}
+                      onChange={(event) => setValue('triplePerPax', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  <RHFTextField
+                      name="child7To12"
+                      label="child7To12"
+                      placeholder="0.00"
+                      value={getValues('child7To12') === 0 ? '' : getValues('child7To12')}
+                      onChange={(event) => setValue('child7To12', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  <RHFTextField
+                      name="child3To6"
+                      label="child3To6"
+                      placeholder="0.00"
+                      value={getValues('child3To6') === 0 ? '' : getValues('child3To6')}
+                      onChange={(event) => setValue('child3To6', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  <RHFTextField
+                      name="infant"
+                      label="infant"
+                      placeholder="0.00"
+                      value={getValues('infant') === 0 ? '' : getValues('infant')}
+                      onChange={(event) => setValue('infant', Number(event.target.value))}
+                      InputLabelProps={{ shrink: true }}
+                      InputProps={{
+                        startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                        type: 'number',
+                      }}
+                  />
+                  
 
                   {/* <RHFTextField */}
                   {/*    name="priceSale" */}
